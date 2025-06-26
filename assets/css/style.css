@@ -1,0 +1,192 @@
+/* Estilos Gerais */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #ffffff;
+    --accent-color: #007bff;
+    --text-color: #333333;
+    --light-text: #ffffff;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+/* Tema Escuro */
+body.dark-theme {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+/* Navbar */
+.navbar {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    border-bottom: 2px solid #007bff;
+    transition: box-shadow 0.3s, background 0.3s;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    color: #fff !important;
+}
+
+.navbar .nav-link, .navbar .dropdown-toggle {
+    color: #e0e0e0 !important;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.navbar .nav-link:hover, .navbar .dropdown-toggle:hover {
+    color: #fff !important;
+}
+
+/* Carrossel */
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.carousel-caption {
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Cards */
+.card {
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Programação Semanal */
+.programacao-card {
+    border-left: 4px solid var(--accent-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+}
+
+.dark-theme .programacao-card {
+    background-color: #2d2d2d;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .carousel-item {
+        height: 300px;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+/* Player de Música */
+.music-player {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Botão de Tema */
+#themeToggle {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: rotate(180deg);
+}
+
+/* Texto Animado */
+.marquee-text {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.marquee-text span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Dropdown-menu colorido e moderno */
+.navbar .dropdown-menu {
+    background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    border: none;
+    padding: 0.5rem 0;
+    animation: fadeInDropdown 0.3s;
+}
+
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.navbar .dropdown-item {
+    color: #fff;
+    font-weight: 500;
+    border-radius: 8px;
+    margin: 0 0.5rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+    background: #fff;
+    color: #007bff;
+}
+
+.navbar .dropdown-header, .navbar .dropdown-divider {
+    color: #e0e0e0;
+    background: transparent;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box;
+} 

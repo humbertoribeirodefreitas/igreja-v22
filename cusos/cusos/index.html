@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plataforma de Cursos Online</title>
+  <link rel="shortcut icon" href="/cusos/img/admac.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container py-5">
+    <div id="auth-container" class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">Entrar na Plataforma</h2>
+            <div class="card mb-4 mx-auto" style="max-width: 300px; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="./img/admac.png" alt="Foto ADMAC" class="card-img-top" style="object-fit:contain; max-height:120px; background:#fff;">
+            </div>
+            <form id="login-form">
+              <div class="mb-3">
+                <label for="login-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="login-email" required>
+              </div>
+              <div class="mb-3">
+                <label for="login-password" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="login-password" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Entrar</button>
+              <div class="text-center mt-3">
+                <a href="#" id="show-register">Não tem conta? Cadastre-se</a>
+              </div>
+              <div class="text-center mt-2">
+                <a href="#" id="show-recover">Esqueceu a senha?</a>
+              </div>
+            </form>
+            <form id="register-form" class="d-none">
+              <div class="mb-3">
+                <label for="register-name" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="register-name" required>
+              </div>
+              <div class="mb-3">
+                <label for="register-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="register-email" required>
+              </div>
+              <div class="mb-3">
+                <label for="register-password" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="register-password" required>
+              </div>
+              <div class="mb-3">
+                <label for="register-role" class="form-label">Tipo de Usuário</label>
+                <select class="form-select" id="register-role" required>
+                  <option value="aluno">Aluno</option>
+                  <option value="admin">Administrador</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="register-photo" class="form-label">Foto de Perfil</label>
+                <input type="file" class="form-control" id="register-photo" accept="image/*">
+              </div>
+              <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+              <div class="text-center mt-3">
+                <a href="#" id="show-login">Já tem conta? Entrar</a>
+              </div>
+            </form>
+            <form id="recover-form" class="d-none">
+              <div class="mb-3">
+                <label for="recover-email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="recover-email" required>
+              </div>
+              <button type="submit" class="btn btn-warning w-100">Recuperar Senha</button>
+              <div class="text-center mt-3">
+                <a href="#" id="show-login-2">Voltar ao login</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main-app" class="d-none">
+      <form id='course-form'>
+        <div class='mb-2'>
+          <label class='form-label'>Título</label>
+          <input type='text' class='form-control' id='course-title' required>
+        </div>
+        <div class='mb-2'>
+          <label class='form-label'>Descrição</label>
+          <input type='text' class='form-control' id='course-desc' required>
+        </div>
+        <div class='mb-2'>
+          <label class='form-label'>Imagem do Curso (opcional)</label>
+          <input type='file' class='form-control' id='course-image' accept='image/*'>
+        </div>
+        <button type='submit' class='btn btn-success'>Salvar</button>
+        <button type='button' class='btn btn-secondary ms-2' id='cancel-course'>Cancelar</button>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html> 
