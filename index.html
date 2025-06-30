@@ -32,6 +32,15 @@
       .navbar .d-flex.align-items-center {
         margin-left: auto !important;
       }
+      /* Suporte para dropdown-submenu Bootstrap 5 */
+      .dropdown-submenu {
+        position: relative;
+      }
+      .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -0.125rem;
+      }
     </style>
 </head>
 <body>
@@ -88,6 +97,9 @@
                 <li><a class="dropdown-item" href="pages/galeria-kids.html">Galeria Kids</a></li>
                 <li><hr class="dropdown-divider"></li>
               </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pages/midia.html">Mídia</a>
             </li>
             <li class="nav-item">
               <a class="btn btn-primary ms-2 d-flex align-items-center justify-content-center" href="cusos/cusos/index.html" title="Cursos" style="padding: 0.4rem 0.7rem; font-size: 1.2rem;">
@@ -231,16 +243,14 @@
 
     <!-- Nossos Ministérios -->
     <section class="container my-5">
-        <!--<img src="#" class="img-fluid mb-4" alt="Nossos Ministérios Banner" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;">-->
+        <!--<img src="#" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 600px; border-radius: 8px; object-fit: cover;">--->
         <h2 class="text-center mb-5">Nossos Ministérios</h2>
         <div class="row g-4">
             <!-- Intercessão -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/Intercessão.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                     <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-heart-fill fs-1 text-danger"></i>
-                        </div>
                         <h3 class="card-title h4 mb-3">Intercessão</h3>
                         <div class="program-item mb-3">
                             <p class="text-muted mb-3">Ministério de oração e intercessão pela igreja e pela cidade.</p>
@@ -252,11 +262,9 @@
 
             <!-- Homens -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/homem.png" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                     <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-person-fill fs-1 text-primary"></i>
-                        </div>
                         <h3 class="card-title h4 mb-3">Homens</h3>
                         <div class="program-item mb-3">
                             <p class="text-muted mb-3">Ministério voltado para o crescimento espiritual dos homens.</p>
@@ -268,14 +276,12 @@
 
             <!-- Mulheres -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/mulheres.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                     <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-person-heart fs-1 text-danger"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">Mulheres</h3>
+                        <h3 class="card-title h4 mb-3">Culto de Mulheres</h3>
                         <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Ministério dedicado ao fortalecimento das mulheres na fé.</p>
+                            <p class="text-muted mb-3">Encontros especiais para edificação, comunhão e fortalecimento das mulheres na fé.</p>
                             <a href="pages/mulheres.html" class="btn btn-outline-success">Saiba mais</a>
                         </div>
                     </div>
@@ -284,11 +290,9 @@
 
             <!-- Jovens -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/midia1.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                     <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-people-fill fs-1 text-warning"></i>
-                        </div>
                         <h3 class="card-title h4 mb-3">Jovens</h3>
                         <div class="program-item mb-3">
                             <p class="text-muted mb-3">Ministério jovem com atividades dinâmicas e relevantes.</p>
@@ -300,11 +304,9 @@
 
             <!-- Kids -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/kidis.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                     <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-stars fs-1 text-info"></i>
-                        </div>
                         <h3 class="card-title h4 mb-3">Kids</h3>
                         <div class="program-item mb-3">
                             <p class="text-muted mb-3">Ministério infantil com ensino bíblico e diversão.</p>
@@ -315,11 +317,9 @@
             </div>
              <!-- EBD -->
              <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
+                <div class="card h-100 border-0 shadow-sm hover-card" style="padding-top: 0; background: #fff; border-radius: 16px;">
+                    <img src="./assets/img/estudo biblico.jpg" class="img-fluid mb-4 d-block mx-auto" alt="Banner Programações" style="max-width: 220px; max-height: 180px; width: 100%; height: auto; object-fit: cover; border-radius: 8px;">
                     <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-book-half fs-1 text-success"></i>
-                        </div>
                         <h3 class="card-title h4 mb-3">EBD</h3>
                         <div class="program-item mb-3">
                             <p class="text-muted mb-3">Escola Bíblica Dominical para todas as idades.</p>
@@ -331,108 +331,11 @@
         </div>
     </section>
     <!-- Nossos Programaçoes -->
-      
-    <section class="container my-5">
-        <!--<img src="#" class="img-fluid mb-4" alt="Nossos Programaçoes Banner" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px;">-->
-        <h2 class="text-center mb-5">Nossos Programaçoes</h2>
+    <!--<section class="container my-5">
         <div class="row g-4">
-            <!-- Intercessão -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-heart-fill fs-1 text-danger"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">Intercessão</h3>
-                        <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Ministério de oração e intercessão pela igreja e pela cidade.</p>
-                            <a href="pages/intercessao.html" class="btn btn-outline-success">Saiba mais</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Homens -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-person-fill fs-1 text-primary"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">Homens</h3>
-                        <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Ministério voltado para o crescimento espiritual dos homens.</p>
-                            <a href="pages/homens.html" class="btn btn-outline-success">Saiba mais</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mulheres -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-person-heart fs-1 text-danger"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">Mulheres</h3>
-                        <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Ministério dedicado ao fortalecimento das mulheres na fé.</p>
-                            <a href="pages/mulheres.html" class="btn btn-outline-success">Saiba mais</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Jovens -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-people-fill fs-1 text-warning"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">Jovens</h3>
-                        <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Ministério jovem com atividades dinâmicas e relevantes.</p>
-                            <a href="pages/jovens.html" class="btn btn-outline-success">Saiba mais</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kids -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-stars fs-1 text-info"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">Kids</h3>
-                        <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Ministério infantil com ensino bíblico e diversão.</p>
-                            <a href="pages/kids.html" class="btn btn-outline-success">Saiba mais</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <!-- EBD -->
-             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm hover-card">
-                    <div class="card-body text-center p-4">
-                        <div class="icon-circle mb-3">
-                            <i class="bi bi-book-half fs-1 text-success"></i>
-                        </div>
-                        <h3 class="card-title h4 mb-3">EBD</h3>
-                        <div class="program-item mb-3">
-                            <p class="text-muted mb-3">Escola Bíblica Dominical para todas as idades.</p>
-                            <a href="pages/edb.html" class="btn btn-outline-success">Saiba mais</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            ... (cards repetidos removidos) ...
         </div>
-    </section>
+    </section>-->
       <!-- Programação semana-->
     <!-- Aviso para Igreja -->
     <div class="container my-4">
@@ -455,6 +358,37 @@
             </div>
         </div>
     </div>
+    <!-- Vídeos Recentes -->
+    <section class="container my-5">
+      <h2 style="font-size:2.3rem;font-weight:600;margin-bottom:2rem;">Vídeos Recentes</h2>
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card shadow-lg h-100">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/0ZsaT_mg6cY" title="Culto Recente" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Culto Recente</h5>
+              <p class="card-text">Assista ao culto mais recente transmitido ao vivo.</p>
+              <a href="https://www.youtube.com/live/0ZsaT_mg6cY?si=uh_r5wt1dDRV_Ic1" target="_blank" class="btn btn-outline-primary"><i class="fab fa-youtube me-2"></i>Ver no YouTube</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card shadow-lg h-100">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/6i8tQilOrm0" title="Culto de Libertação" allowfullscreen></iframe>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title fw-bold">Culto de Libertação</h5>
+              <p class="card-text">Assista ao culto de libertação transmitido ao vivo.</p>
+              <a href="https://www.youtube.com/live/6i8tQilOrm0?si=eQS1RlZAgKrtPP5e" target="_blank" class="btn btn-outline-primary"><i class="fab fa-youtube me-2"></i>Ver no YouTube</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Fim Vídeos Recentes -->
     <!-- Contato -->
     <footer class="bg-dark text-light mt-5">
         <div class="container py-4">
@@ -521,5 +455,43 @@
         </div>
       </div>
     </div>
+    <script>
+    function setCardImage(inputId, cardId, uploadBtnId) {
+        let lastFile = null;
+        document.getElementById(inputId).addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            lastFile = file;
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    document.getElementById(cardId).style.backgroundImage = `url('${ev.target.result}')`;
+                    document.getElementById(uploadBtnId).style.display = 'inline-block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        document.getElementById(uploadBtnId).addEventListener('click', function() {
+            if (!lastFile) return;
+            const formData = new FormData();
+            formData.append('image', lastFile);
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            }).then(resp => {
+                if (resp.ok) {
+                    alert('Imagem enviada com sucesso!');
+                } else {
+                    alert('Falha ao enviar imagem.');
+                }
+            }).catch(() => alert('Erro ao conectar com o servidor.'));
+        });
+    }
+    setCardImage('input-intercessao-img', 'card-intercessao', 'btn-upload-intercessao');
+    setCardImage('input-homens-img', 'card-homens', 'btn-upload-homens');
+    setCardImage('input-mulheres-img', 'card-mulheres', 'btn-upload-mulheres');
+    setCardImage('input-jovens-img', 'card-jovens', 'btn-upload-jovens');
+    setCardImage('input-kids-img', 'card-kids', 'btn-upload-kids');
+    setCardImage('input-ebd-img', 'card-ebd', 'btn-upload-ebd');
+    </script>
 </body>
 </html>
