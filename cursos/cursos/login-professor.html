@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <h2>Login do Professor</h2>
-        <form>
+        <form id="form-login-professor">
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required>
             <label for="senha">Senha:</label>
@@ -18,5 +18,13 @@
         </form>
         <a href="reset-professor.html">Esqueceu a senha?</a>
     </div>
+    <script>
+        document.getElementById('form-login-professor').onsubmit = function(e) {
+            e.preventDefault();
+            // Simulação de login
+            localStorage.setItem('login_professor', 'true');
+            window.location.href = 'painel-professor.html';
+        }
+    </script>
 </body>
 </html> 

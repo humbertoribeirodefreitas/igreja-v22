@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Aulas</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        .aula { margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        .publicada { background: #e0ffe0; }
+        .nao-publicada { background: #ffe0e0; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gerenciar Aulas</h2>
+        <div id="lista-aulas"></div>
+    </div>
+    <script>
+        // Lista de aulas fictícias
+        const aulas = [
+            { id: 1, titulo: 'Aula 1 - Introdução' },
+            { id: 2, titulo: 'Aula 2 - Antigo Testamento' },
+            { id: 3, titulo: 'Aula 3 - Novo Testamento' }
+        ];
+
+        // Carregar status do localStorage
+        function getStatusAula(id) {
+            return localStorage.getItem('aula_publicada_' + id) === 'true';
+        }
+        function setStatusAula(id, status) {
+            localStorage.setItem('aula_publicada_' + id, status);
+        }
+
+        function renderAulas() {
+            const lista = document.getElementById('lista-aulas');
+            lista.innerHTML = '';
+            aulas.forEach(aula => {
+                const publicada = getStatusAula(aula.id);
+                const div = document.createElement('div');
+                div.className = 'aula ' + (publicada ? 'publicada' : 'nao-publicada');
+                div.innerHTML = `
+                    <strong>${aula.titulo}</strong>
+                    <span style="margin-left:10px;">${publicada ? 'Publicado' : 'Não publicado'}</span>
+                    <button onclick="togglePublicacao(${aula.id})">${publicada ? 'Despublicar' : 'Publicar'}</button>
+                `;
+                lista.appendChild(div);
+            });
+        }
+
+        window.togglePublicacao = function(id) {
+            const atual = getStatusAula(id);
+            setStatusAula(id, !atual);
+            renderAulas();
+        }
+
+        renderAulas();
+    </script>
+</body>
+</html> 
