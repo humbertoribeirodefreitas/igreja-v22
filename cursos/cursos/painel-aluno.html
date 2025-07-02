@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Aluno - EAD</title>
+  <link rel="shortcut icon" href="./img/admac.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Painel Aluno</a>
+      <button class="btn btn-outline-light" id="logoutBtn">Sair</button>
+    </div>
+  </nav>
+  <div class="container mb-5">
+    <h2 class="mb-4">Bem-vindo, Aluno!</h2>
+    <div class="row">
+      <div class="col-md-7">
+        <h4>Aulas Disponíveis</h4>
+        <div id="listaAulasAluno">
+          <!-- Aulas serão inseridas aqui via JS -->
+        </div>
+      </div>
+      <div class="col-md-5">
+        <h4>Enviar Atividade</h4>
+        <form id="formAtividadeAluno">
+          <div class="mb-2">
+            <label class="form-label">Selecione a Aula</label>
+            <select class="form-select" id="aulaAtividade" required></select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Descrição da Atividade</label>
+            <input type="text" class="form-control" id="descAtividade" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Arquivo (opcional)</label>
+            <input type="file" class="form-control" id="arquivoAtividade">
+          </div>
+          <button type="submit" class="btn btn-success w-100 mt-2">Enviar</button>
+        </form>
+        <div id="audioAlunoContainer" class="my-3"></div>
+        <div id="msgAtividade" class="alert alert-info mt-2 d-none"></div>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-12">
+        <h4>Minhas Avaliações</h4>
+        <table class="table table-bordered" id="tabelaNotasAluno">
+          <thead class="table-light">
+            <tr>
+              <th>Aula</th>
+              <th>Atividade</th>
+              <th>Nota</th>
+              <th>Comentário</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Notas serão inseridas aqui via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-12">
+        <h4>Minhas Presenças</h4>
+        <div id="calendarioPresencaAluno"></div>
+        <!-- Modal Justificativa -->
+        <div class="modal fade" id="modalJustificativaAluno" tabindex="-1" aria-labelledby="modalJustificativaAlunoLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalJustificativaAlunoLabel">Justificar Falta/Presença</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+              </div>
+              <div class="modal-body">
+                <form id="formJustificativaAluno">
+                  <input type="hidden" id="justAno">
+                  <input type="hidden" id="justMes">
+                  <input type="hidden" id="justDia">
+                  <div class="mb-3">
+                    <label class="form-label">Justificativa</label>
+                    <textarea class="form-control" id="justTexto" rows="3" maxlength="200" required></textarea>
+                    <div class="small text-end text-muted"><span id="contadorJust">0</span>/200</div>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Salvar Justificativa</button>
+                </form>
+                <div id="msgJustificativa" class="alert alert-info mt-2 d-none"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Botão WhatsApp flutuante -->
+  <a href="https://wa.me/5599999999999" target="_blank" class="whatsapp-float" title="Tire sua dúvida no WhatsApp">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" style="width:60px;height:60px;">
+  </a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Proteção de acesso
+    if (!JSON.parse(localStorage.getItem('usuarioLogado')) || JSON.parse(localStorage.getItem('usuarioLogado')).tipo !== 'aluno') {
+      window.location.href = 'index.html';
+    }
+    // Aplicar personalização do fundo e banner
+    if (typeof aplicarPersonalizacaoPainel === 'function') {
+      aplicarPersonalizacaoPainel('aluno');
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof aplicarPersonalizacaoPainel === 'function') aplicarPersonalizacaoPainel('aluno');
+      });
+    }
+  </script>
+</body>
+</html> 

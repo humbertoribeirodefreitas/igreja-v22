@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Super Admin - EAD</title>
+  <link rel="shortcut icon" href="./img/admac.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Painel Super Admin</a>
+      <a href="painel-professor.html" class="btn btn-outline-light ms-2">Ver Painel Professor</a>
+      <button class="btn btn-outline-light" id="logoutBtn">Sair</button>
+    </div>
+  </nav>
+  <div class="container">
+    <h2 class="mb-4">Bem-vindo, Super Admin!</h2>
+    <div class="row">
+      <div class="col-md-7">
+        <h4>Professores Cadastrados</h4>
+        <table class="table table-bordered align-middle" id="tabelaProfessores">
+          <thead class="table-light">
+            <tr>
+              <th>Usuário</th>
+              <th>Status</th>
+              <th>Permissão</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Professores serão inseridos aqui via JS -->
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-5">
+        <h4>Criar Novo Usuário</h4>
+        <form id="formNovoUsuario">
+          <div class="mb-2">
+            <label class="form-label">Usuário</label>
+            <input type="text" class="form-control" id="novoUsuario" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Senha</label>
+            <input type="password" class="form-control" id="novaSenha" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Tipo de Conta</label>
+            <select class="form-select" id="novoTipo" required>
+              <option value="">Selecione...</option>
+              <option value="superadmin">Super Admin</option>
+              <option value="professor">Professor</option>
+              <option value="aluno">Aluno</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-success w-100 mt-2">Criar Usuário</button>
+        </form>
+        <div id="msgUsuario" class="alert alert-info mt-2 d-none"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Inicialização do painel super admin
+    if (!JSON.parse(localStorage.getItem('usuarioLogado')) || JSON.parse(localStorage.getItem('usuarioLogado')).tipo !== 'superadmin') {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html> 

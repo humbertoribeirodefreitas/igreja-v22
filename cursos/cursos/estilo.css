@@ -1,0 +1,29 @@
+body {
+  background: #f8fafc;
+}
+.card {
+  border-radius: 1rem;
+}
+.btn-primary {
+  background-color: #4f46e5;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #3730a3;
+}
+.btn-link[data-bs-target="#modalCadastro"] {
+  color: #4f46e5;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.btn-link[data-bs-target="#modalCadastro"]:hover {
+  color: #3730a3;
+  text-decoration: underline;
+}
+.whatsapp-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+} 

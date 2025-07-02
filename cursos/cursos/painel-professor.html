@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Professor - EAD</title>
+  <link rel="shortcut icon" href="./img/admac.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
+  <style>
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+    }
+    .whatsapp-float img {
+      width: 60px;
+      height: 60px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Painel Professor</a>
+      <a href="painel-aluno.html" class="btn btn-outline-light ms-2">Ver Painel Aluno</a>
+      <button class="btn btn-outline-light" id="logoutBtn">Sair</button>
+    </div>
+  </nav>
+  <div class="container mb-5">
+    <h2 class="mb-4">Bem-vindo, Professor!</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h4>Aulas Cadastradas</h4>
+          <button class="btn btn-primary btn-sm" id="btnToggleFormAula">Adicionar Nova Aula</button>
+        </div>
+        <div id="formAulaContainer" style="display:none;">
+          <form id="formNovaAula">
+            <div class="mb-2">
+              <label class="form-label">Título da Aula</label>
+              <input type="text" class="form-control" id="tituloAula" required>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Capa do Livro (imagem)</label>
+              <input type="file" class="form-control" id="capaAula" accept="image/*">
+              <img id="previewCapa" src="#" alt="Prévia da capa" style="max-width:100px; display:none; margin-top:8px;"/>
+            </div>
+            <div class="mb-2">
+              <label class="form-label">Link do Vídeo (YouTube ou MP4)</label>
+              <input type="text" class="form-control" id="linkVideo" required>
+            </div>
+            <div class="mb-2" id="previewVideo" style="display:none;"></div>
+            <div class="mb-2">
+              <label class="form-label">Materiais para Download</label>
+              <input type="file" class="form-control" id="materiaisAula" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+              <button type="button" class="btn btn-secondary mt-2" id="btnAddMaterial">Adicionar Material</button>
+              <ul class="list-group mt-2" id="listaMateriaisTemp"></ul>
+            </div>
+            <button type="submit" class="btn btn-success w-100 mt-2">Adicionar Aula</button>
+          </form>
+          <div id="msgAula" class="alert alert-info mt-2 d-none"></div>
+        </div>
+        <ul class="list-group mt-3" id="listaAulas">
+          <!-- Aulas serão inseridas aqui via JS -->
+        </ul>
+        <div id="atividadesAlunosContainer" class="mt-4"></div>
+        <div class="card mt-4">
+          <div class="card-body">
+            <h5 class="mb-3">Calendário de Presença</h5>
+            <div id="calendarioPresencaContainer"></div>
+          </div>
+        </div>
+        <h4 class="mt-4">Lista de Alunos</h4>
+        <ul class="list-group" id="listaAlunos">
+          <!-- Alunos serão inseridos aqui via JS -->
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <div class="card mb-4 p-3">
+          <h5 class="mb-3">Personalização do Painel</h5>
+          <div class="mb-2">
+            <label class="form-label">Imagem de Fundo</label>
+            <input type="file" class="form-control" id="fundoPainel" accept="image/*">
+            <img id="previewFundo" src="#" alt="Prévia do fundo" style="max-width:120px; display:none; margin-top:8px;"/>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Banner</label>
+            <input type="file" class="form-control" id="bannerPainel" accept="image/*">
+            <img id="previewBanner" src="#" alt="Prévia do banner" style="max-width:200px; display:none; margin-top:8px;"/>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Áudio (MP3)</label>
+            <input type="file" class="form-control" id="audioPainel" accept="audio/mp3,audio/mpeg">
+            <audio id="previewAudio" controls style="display:none; margin-top:8px; max-width:200px;"></audio>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Aviso para os alunos</label>
+            <textarea class="form-control" id="avisoPainel" rows="2" maxlength="200" placeholder="Digite um aviso para os alunos..."></textarea>
+            <button class="btn btn-primary btn-sm mt-2" id="btnSalvarPersonalizacao" type="button">Salvar Personalização</button>
+            <div id="msgPersonalizacao" class="alert alert-info mt-2 d-none"></div>
+          </div>
+        </div>
+        <h4>Avaliar Atividades</h4>
+        <form id="formAvaliacao">
+          <div class="mb-2">
+            <label class="form-label">Aluno</label>
+            <select class="form-select" id="alunoAvaliacao" required></select>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Atividade</label>
+            <input type="text" class="form-control" id="atividadeAvaliacao" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Nota (1 a 10)</label>
+            <input type="number" class="form-control" id="notaAvaliacao" min="1" max="10" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Comentário</label>
+            <textarea class="form-control" id="comentarioAvaliacao" rows="2"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 mt-2">Salvar Avaliação</button>
+        </form>
+        <div id="msgAvaliacao" class="alert alert-info mt-2 d-none"></div>
+        <div class="row mt-4">
+          <div class="col-12">
+            <h4>Avaliações Realizadas</h4>
+            <table class="table table-bordered" id="tabelaAvaliacoes">
+              <thead class="table-light">
+                <tr>
+                  <th>Aluno</th>
+                  <th>Atividade</th>
+                  <th>Nota</th>
+                  <th>Comentário</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Avaliações serão inseridas aqui via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Botão WhatsApp flutuante -->
+  <a href="https://wa.me/5599999999999" target="_blank" class="whatsapp-float" title="Tire sua dúvida no WhatsApp">
+    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp" style="width:60px;height:60px;">
+  </a>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    // Proteção de acesso
+    if (!JSON.parse(localStorage.getItem('usuarioLogado')) || JSON.parse(localStorage.getItem('usuarioLogado')).tipo !== 'professor') {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html> 
