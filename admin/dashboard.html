@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Admin - Igreja Admac</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 250px;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-link i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+        
+        .top-bar {
+            background: white;
+            padding: 1rem 2rem;
+            margin: -2rem -2rem 2rem -2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-admin {
+            border-radius: 10px;
+            padding: 0.5rem 1.5rem;
+            font-weight: 600;
+        }
+        
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .table th {
+            background-color: #f8f9fa;
+            border: none;
+            font-weight: 600;
+        }
+        
+        .sidebar-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .sidebar-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="d-flex align-items-center">
+                <img src="../assets/img/admac.png" alt="Logo ADMAC" class="me-3">
+                <div>
+                    <h6 class="mb-0">Painel Admin</h6>
+                    <small class="opacity-75">Igreja Admac</small>
+                </div>
+            </div>
+        </div>
+        
+        <ul class="nav flex-column mt-3">
+            <li class="nav-item">
+                <a class="nav-link active" href="#" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="carousel">
+                    <i class="fas fa-images"></i>Carrossel
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="videos">
+                    <i class="fab fa-youtube"></i>Vídeos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="revista">
+                    <i class="fas fa-book"></i>Revista
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="ministerios">
+                    <i class="fas fa-church"></i>Ministérios
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="galerias">
+                    <i class="fas fa-images"></i>Galerias
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="aviso">
+                    <i class="fas fa-bullhorn"></i>Avisos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="redes-sociais">
+                    <i class="fas fa-share-alt"></i>Redes Sociais
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-section="configuracoes">
+                    <i class="fas fa-cog"></i>Configurações
+                </a>
+            </li>
+        </ul>
+        
+        <div class="mt-auto p-3">
+            <a href="login.html" class="btn btn-outline-light btn-sm w-100" onclick="logout()">
+                <i class="fas fa-sign-out-alt me-2"></i>Sair
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-link sidebar-toggle me-3" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h4 class="mb-0">Dashboard</h4>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="me-3">Bem-vindo, <strong id="adminUser">Admin</strong></span>
+                <img src="../assets/img/admac.png" alt="User" width="35" height="35" class="rounded-circle">
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboard-section" class="content-section">
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="card stats-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Vídeos</h6>
+                                    <h3 class="mb-0">2</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fab fa-youtube fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Ministérios</h6>
+                                    <h3 class="mb-0">6</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-church fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Carrossel</h6>
+                                    <h3 class="mb-0">8</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-images fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card stats-card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="card-title">Avisos</h6>
+                                    <h3 class="mb-0">1</h3>
+                                </div>
+                                <div class="align-self-center">
+                                    <i class="fas fa-bullhorn fa-2x opacity-75"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Atividades Recentes</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ação</th>
+                                            <th>Data</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Vídeos atualizados</td>
+                                            <td>Hoje</td>
+                                            <td><span class="badge bg-success">Concluído</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Revista Admac adicionada</td>
+                                            <td>Ontem</td>
+                                            <td><span class="badge bg-success">Concluído</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Carrossel modificado</td>
+                                            <td>2 dias atrás</td>
+                                            <td><span class="badge bg-warning">Pendente</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0">Ações Rápidas</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary btn-admin" onclick="showSection('videos')">
+                                    <i class="fab fa-youtube me-2"></i>Gerenciar Vídeos
+                                </button>
+                                <button class="btn btn-success btn-admin" onclick="showSection('revista')">
+                                    <i class="fas fa-book me-2"></i>Editar Revista
+                                </button>
+                                <button class="btn btn-info btn-admin" onclick="showSection('carousel')">
+                                    <i class="fas fa-images me-2"></i>Carrossel
+                                </button>
+                                <button class="btn btn-warning btn-admin" onclick="showSection('aviso')">
+                                    <i class="fas fa-bullhorn me-2"></i>Avisos
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other sections will be loaded here -->
+        <div id="content-sections"></div>
+    </div>
+
+    <script>
+        // Verificar autenticação
+        if (localStorage.getItem('adminLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+
+        // Mostrar usuário logado
+        document.getElementById('adminUser').textContent = localStorage.getItem('adminUser') || 'Admin';
+
+        // Navegação
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remover classe active de todos os links
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                
+                // Adicionar classe active ao link clicado
+                this.classList.add('active');
+                
+                // Mostrar seção correspondente
+                const section = this.getAttribute('data-section');
+                showSection(section);
+            });
+        });
+
+        function showSection(sectionName) {
+            // Esconder todas as seções
+            document.getElementById('dashboard-section').style.display = 'none';
+            document.getElementById('content-sections').innerHTML = '';
+            
+            if (sectionName === 'dashboard') {
+                document.getElementById('dashboard-section').style.display = 'block';
+                return;
+            }
+            
+            // Carregar seção específica
+            loadSection(sectionName);
+        }
+
+        function loadSection(sectionName) {
+            const sections = {
+                'carousel': loadCarouselSection,
+                'videos': loadVideosSection,
+                'revista': loadRevistaSection,
+                'ministerios': loadMinisteriosSection,
+                'galerias': loadGaleriasSection,
+                'aviso': loadAvisoSection,
+                'redes-sociais': loadRedesSociaisSection,
+                'configuracoes': loadConfiguracoesSection
+            };
+            
+            if (sections[sectionName]) {
+                sections[sectionName]();
+            }
+        }
+
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            localStorage.removeItem('adminUser');
+            window.location.href = 'login.html';
+        }
+
+        // Funções para carregar seções específicas
+        function loadCarouselSection() {
+            document.getElementById('content-sections').innerHTML = `
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Gerenciar Carrossel</h5>
+                        <button class="btn btn-primary btn-sm" onclick="addCarouselItem()">
+                            <i class="fas fa-plus me-2"></i>Adicionar Item
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Imagem</th>
+                                        <th>Título</th>
+                                        <th>Descrição</th>
+                                        <th>Ordem</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="carouselItems">
+                                    <!-- Items serão carregados aqui -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+            loadCarouselItems();
+        }
+
+        function loadVideosSection() {
+            document.getElementById('content-sections').innerHTML = `
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Gerenciar Vídeos</h5>
+                        <button class="btn btn-primary btn-sm" onclick="addVideo()">
+                            <i class="fas fa-plus me-2"></i>Adicionar Vídeo
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="videosList">
+                            <!-- Vídeos serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+            `;
+            loadVideos();
+        }
+
+        function loadRevistaSection() {
+            document.getElementById('content-sections').innerHTML = `
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Gerenciar Revista Admac</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="revistaForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Link do Google Drive</label>
+                                        <input type="url" class="form-control" id="revistaLink" 
+                                               value="https://drive.google.com/file/d/1ISlkhSaVjWEwmEexybSQNZBt-ZQghGa5/view?pli=1">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Título da Revista</label>
+                                        <input type="text" class="form-control" id="revistaTitulo" value="Revista Admac">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Descrição</label>
+                                <textarea class="form-control" id="revistaDescricao" rows="3">A revista Admac traz mensagens inspiradoras, testemunhos, programações e muito mais para edificar sua vida espiritual.</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            `;
+            
+            // Adicionar evento de submit
+            document.getElementById('revistaForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveRevista();
+            });
+        }
+
+        // Funções para carregar seções específicas
+        function loadMinisteriosSection() {
+            document.getElementById('content-sections').innerHTML = `
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Gerenciar Ministérios</h5>
+                        <button class="btn btn-primary btn-sm" onclick="showMinisterioModal()">
+                            <i class="fas fa-plus me-2"></i>Adicionar Ministério
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="ministeriosList">
+                            <!-- Ministérios serão carregados aqui -->
+                        </div>
+                    </div>
+                </div>
+            `;
+            loadMinisteriosSection();
+        }
+
+        function loadGaleriasSection() {
+            document.getElementById('content-sections').innerHTML = `
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Gerenciar Galerias</h5>
+                        <button class="btn btn-primary btn-sm" onclick="showGaleriaModal()">
+                            <i class="fas fa-plus me-2"></i>Adicionar Foto
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" id="galeriasList">
+                            <!-- Galerias serão carregadas aqui -->
+                        </div>
+                    </div>
+                </div>
+            `;
+            loadGaleriasSection();
+        }
+
+        // Carregar dados iniciais
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar dashboard
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html> 

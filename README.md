@@ -113,4 +113,4 @@ Para contribuir com o projeto:
 
 ## 📞 Suporte
 
-Para suporte, envie um email para contato@igrejaadmac.com ou abra uma issue no GitHub. 
+Para suporte, envie um email para contato@igrejaadmac.com ou abra uma issue no GitHub. # teste20
